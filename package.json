@@ -1,0 +1,29 @@
+{
+    "name": "@hkianim/react-components",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build"
+    },
+    "peerDependencies": {
+        "@emotion/react": ">=11",
+        "@emotion/styled": ">=11",
+        "@mui/icons-material": ">=9 <10",
+        "@mui/material": ">=9 <10",
+        "react": ">=18",
+        "react-dom": ">=18"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^5.0.0",
+        "vite": "^8.0.0"
+    }
+}
