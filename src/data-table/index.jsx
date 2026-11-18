@@ -57,7 +57,7 @@ const OPERATION_COLUMN_PADDING = 16;
 // Helpers
 // --------------------------------------------------
 
-const noop = () => {};
+const noop = () => { };
 
 function getOperationValue(value, row) {
     return typeof value === "function" ? value(row) : value;
@@ -85,8 +85,8 @@ function formatValue(value, column, row, selected) {
         typeof format === "string"
             ? format
             : typeof format === "object" && format !== null
-              ? format.type
-              : "text";
+                ? format.type
+                : "text";
 
     const formatOptions =
         typeof format === "object" && format !== null ? { ...format } : {};
@@ -511,9 +511,9 @@ function DataTable({
 
     const operationColumnWidth = hasOperations
         ? Math.max(
-              OPERATION_BUTTON_WIDTH,
-              normalizedOperations.length * OPERATION_BUTTON_WIDTH,
-          ) + OPERATION_COLUMN_PADDING
+            OPERATION_BUTTON_WIDTH,
+            normalizedOperations.length * OPERATION_BUTTON_WIDTH,
+        ) + OPERATION_COLUMN_PADDING
         : 0;
 
     // --------------------------------------------------
@@ -851,21 +851,23 @@ function DataTable({
                             {/* Initial loading */}
                             {loading
                                 ? renderStatusRow(
-                                      <Stack
-                                          direction="row"
-                                          spacing={1.5}
-                                          alignItems="center"
-                                          justifyContent="center"
-                                      >
-                                          <CircularProgress size={24} />
+                                    <Stack
+                                        direction="row"
+                                        spacing={1.5}
+                                        sx={{
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
+                                    >
+                                        <CircularProgress size={24} />
 
-                                          <Typography variant="body2">
-                                              در حال دریافت اطلاعات...
-                                          </Typography>
-                                      </Stack>,
-                                  )
+                                        <Typography variant="body2">
+                                            در حال دریافت اطلاعات...
+                                        </Typography>
+                                    </Stack>,
+                                )
                                 : error
-                                  ? // Error
+                                    ? // Error
                                     renderStatusRow(
                                         <Typography
                                             color="error"
@@ -874,147 +876,147 @@ function DataTable({
                                             {errorMessage}
                                         </Typography>,
                                     )
-                                  : rows.length === 0
-                                    ? // Empty
-                                      renderStatusRow(
-                                          <Typography
-                                              color="text.secondary"
-                                              variant="body2"
-                                          >
-                                              {emptyMessage}
-                                          </Typography>,
-                                      )
-                                    : // Data rows
-                                      rows.map((row) => {
-                                          const rowId = getRowId(row);
-                                          const selected =
-                                              selectedRowId === rowId;
-                                          const hovered =
-                                              hoveredRowId === rowId;
+                                    : rows.length === 0
+                                        ? // Empty
+                                        renderStatusRow(
+                                            <Typography
+                                                color="text.secondary"
+                                                variant="body2"
+                                            >
+                                                {emptyMessage}
+                                            </Typography>,
+                                        )
+                                        : // Data rows
+                                        rows.map((row) => {
+                                            const rowId = getRowId(row);
+                                            const selected =
+                                                selectedRowId === rowId;
+                                            const hovered =
+                                                hoveredRowId === rowId;
 
-                                          return (
-                                              <TableRow
-                                                  key={rowId}
-                                                  onClick={() =>
-                                                      handleRowClick(row)
-                                                  }
-                                                  onMouseEnter={() =>
-                                                      setHoveredRowId(rowId)
-                                                  }
-                                                  onMouseLeave={() =>
-                                                      setHoveredRowId(null)
-                                                  }
-                                                  sx={getRowStyles(
-                                                      row,
-                                                      selected,
-                                                      hovered,
-                                                  )}
-                                              >
-                                                  {visibleColumns.map(
-                                                      (column, index) => (
-                                                          <TableCell
-                                                              key={column.field}
-                                                              sx={{
-                                                                  width: columnWidths[
-                                                                      index
-                                                                  ],
-                                                                  direction:
-                                                                      column.dir ||
-                                                                      "auto",
-                                                                  textAlign:
-                                                                      column.alignment ||
-                                                                      "start",
-                                                              }}
-                                                          >
-                                                              {renderCell(
-                                                                  column,
-                                                                  row,
-                                                                  selected,
-                                                              )}
-                                                          </TableCell>
-                                                      ),
-                                                  )}
+                                            return (
+                                                <TableRow
+                                                    key={rowId}
+                                                    onClick={() =>
+                                                        handleRowClick(row)
+                                                    }
+                                                    onMouseEnter={() =>
+                                                        setHoveredRowId(rowId)
+                                                    }
+                                                    onMouseLeave={() =>
+                                                        setHoveredRowId(null)
+                                                    }
+                                                    sx={getRowStyles(
+                                                        row,
+                                                        selected,
+                                                        hovered,
+                                                    )}
+                                                >
+                                                    {visibleColumns.map(
+                                                        (column, index) => (
+                                                            <TableCell
+                                                                key={column.field}
+                                                                sx={{
+                                                                    width: columnWidths[
+                                                                        index
+                                                                    ],
+                                                                    direction:
+                                                                        column.dir ||
+                                                                        "auto",
+                                                                    textAlign:
+                                                                        column.alignment ||
+                                                                        "start",
+                                                                }}
+                                                            >
+                                                                {renderCell(
+                                                                    column,
+                                                                    row,
+                                                                    selected,
+                                                                )}
+                                                            </TableCell>
+                                                        ),
+                                                    )}
 
-                                                  {/* Operations */}
-                                                  {hasOperations && (
-                                                      <TableCell
-                                                          align="center"
-                                                          sx={{
-                                                              width: operationColumnWidth,
-                                                          }}
-                                                      >
-                                                          <Stack
-                                                              direction="row"
-                                                              spacing={0.5}
-                                                              justifyContent="center"
-                                                          >
-                                                              {normalizedOperations.map(
-                                                                  (
-                                                                      operation,
-                                                                  ) => {
-                                                                      const visible =
-                                                                          getOperationValue(
-                                                                              operation.visible,
-                                                                              row,
-                                                                          );
+                                                    {/* Operations */}
+                                                    {hasOperations && (
+                                                        <TableCell
+                                                            align="center"
+                                                            sx={{
+                                                                width: operationColumnWidth,
+                                                            }}
+                                                        >
+                                                            <Stack
+                                                                direction="row"
+                                                                spacing={0.5}
+                                                                sx={{ justifyContent: "center" }}
+                                                            >
+                                                                {normalizedOperations.map(
+                                                                    (
+                                                                        operation,
+                                                                    ) => {
+                                                                        const visible =
+                                                                            getOperationValue(
+                                                                                operation.visible,
+                                                                                row,
+                                                                            );
 
-                                                                      const disabled =
-                                                                          getOperationValue(
-                                                                              operation.disabled,
-                                                                              row,
-                                                                          );
+                                                                        const disabled =
+                                                                            getOperationValue(
+                                                                                operation.disabled,
+                                                                                row,
+                                                                            );
 
-                                                                      if (
-                                                                          !visible
-                                                                      ) {
-                                                                          return null;
-                                                                      }
+                                                                        if (
+                                                                            !visible
+                                                                        ) {
+                                                                            return null;
+                                                                        }
 
-                                                                      return (
-                                                                          <Tooltip
-                                                                              key={
-                                                                                  operation.key
-                                                                              }
-                                                                              title={
-                                                                                  operation.label
-                                                                              }
-                                                                              arrow
-                                                                          >
-                                                                              <span>
-                                                                                  <IconButton
-                                                                                      size="small"
-                                                                                      color={
-                                                                                          operation.color ||
-                                                                                          "default"
-                                                                                      }
-                                                                                      disabled={Boolean(
-                                                                                          disabled,
-                                                                                      )}
-                                                                                      onClick={(
-                                                                                          event,
-                                                                                      ) =>
-                                                                                          handleOperation(
-                                                                                              event,
-                                                                                              operation,
-                                                                                              row,
-                                                                                          )
-                                                                                      }
-                                                                                  >
-                                                                                      {
-                                                                                          operation.icon
-                                                                                      }
-                                                                                  </IconButton>
-                                                                              </span>
-                                                                          </Tooltip>
-                                                                      );
-                                                                  },
-                                                              )}
-                                                          </Stack>
-                                                      </TableCell>
-                                                  )}
-                                              </TableRow>
-                                          );
-                                      })}
+                                                                        return (
+                                                                            <Tooltip
+                                                                                key={
+                                                                                    operation.key
+                                                                                }
+                                                                                title={
+                                                                                    operation.label
+                                                                                }
+                                                                                arrow
+                                                                            >
+                                                                                <span>
+                                                                                    <IconButton
+                                                                                        size="small"
+                                                                                        color={
+                                                                                            operation.color ||
+                                                                                            "default"
+                                                                                        }
+                                                                                        disabled={Boolean(
+                                                                                            disabled,
+                                                                                        )}
+                                                                                        onClick={(
+                                                                                            event,
+                                                                                        ) =>
+                                                                                            handleOperation(
+                                                                                                event,
+                                                                                                operation,
+                                                                                                row,
+                                                                                            )
+                                                                                        }
+                                                                                    >
+                                                                                        {
+                                                                                            operation.icon
+                                                                                        }
+                                                                                    </IconButton>
+                                                                                </span>
+                                                                            </Tooltip>
+                                                                        );
+                                                                    },
+                                                                )}
+                                                            </Stack>
+                                                        </TableCell>
+                                                    )}
+                                                </TableRow>
+                                            );
+                                        })}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -1032,10 +1034,9 @@ function DataTable({
                     onRowsPerPageChange={handlePageSizeChange}
                     labelRowsPerPage="تعداد در هر صفحه:"
                     labelDisplayedRows={({ from, to, count }) =>
-                        `${from.toLocaleString("fa-IR")} تا ${to.toLocaleString("fa-IR")} از ${
-                            count !== -1
-                                ? count.toLocaleString("fa-IR")
-                                : "بیشتر"
+                        `${from.toLocaleString("fa-IR")} تا ${to.toLocaleString("fa-IR")} از ${count !== -1
+                            ? count.toLocaleString("fa-IR")
+                            : "بیشتر"
                         } `
                     }
                 />
