@@ -1,6 +1,7 @@
 {
     "name": "@hkianim/react-components",
     "version": "1.0.0",
+    "description": "Shared React components for Persian Studio projects",
     "type": "module",
     "main": "./dist/index.js",
     "module": "./dist/index.js",
@@ -8,8 +9,18 @@
         ".": "./dist/index.js"
     },
     "files": [
-        "dist"
+        "dist",
+        "README.md",
+        "LICENSE"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hkianim/react-components.git"
+    },
+    "license": "MIT",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
     "scripts": {
         "build": "vite build"
     },

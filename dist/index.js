@@ -321,8 +321,10 @@ function D({ columns: e = [], rows: m = [], getRowId: h = (e) => e.id, loading: 
 							/* @__PURE__ */ g(re, { children: y ? $(/* @__PURE__ */ _(c, {
 								direction: "row",
 								spacing: 1.5,
-								alignItems: "center",
-								justifyContent: "center",
+								sx: {
+									alignItems: "center",
+									justifyContent: "center"
+								},
 								children: [/* @__PURE__ */ g(o, { size: 24 }), /* @__PURE__ */ g(f, {
 									variant: "body2",
 									children: "در حال دریافت اطلاعات..."
@@ -355,7 +357,7 @@ function D({ columns: e = [], rows: m = [], getRowId: h = (e) => e.id, loading: 
 										children: /* @__PURE__ */ g(c, {
 											direction: "row",
 											spacing: .5,
-											justifyContent: "center",
+											sx: { justifyContent: "center" },
 											children: q.map((t) => {
 												let n = S(t.visible, e), r = S(t.disabled, e);
 												return n ? /* @__PURE__ */ g(se, {
